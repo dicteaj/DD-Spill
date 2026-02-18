@@ -1,5 +1,18 @@
 import config
 import pygame
+from pathlib import Path
+
+
+SRC_DIR = Path(__file__).resolve().parent   #.../prosjekt/src
+ROOT_DIR = SRC_DIR.parent                   #.../prosjekt
+IMG_DIR = ROOT_DIR / "bilder"               #.../prosjekt/bilder
+
+
+def load_image(name):
+    path = IMG_DIR / name
+    if not path.is_file():
+        raise FileNotFoundError(f"Image file '{name}' not found in '{IMG_DIR}'")
+    return pygame.image.load(path).convert_alpha()
 
 
 class Player(pygame.sprite.Sprite):
@@ -9,7 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.y = y
         self.speed = config.SPEED
         
-        self.image = pygame.image.load("bilder/RED.png").convert_alpha()
+        self.image = load_image("RED.png")
         self.image = pygame.transform.smoothscale(self.image, (100, 150))
         self.rect = self.image.get_rect()
         self.rect.midbottom = (self.x, self.y)

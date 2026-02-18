@@ -3,6 +3,18 @@ import pygame
 from player import Player
 from objects import Fridge
 from objects import kitchenBench
+from pathlib import Path
+
+SRC_DIR = Path(__file__).resolve().parent   #.../prosjekt/src
+ROOT_DIR = SRC_DIR.parent                   #.../prosjekt
+IMG_DIR = ROOT_DIR / "bilder"               #.../prosjekt/bilder
+
+
+def load_image(name):
+    path = IMG_DIR / name
+    if not path.is_file():
+        raise FileNotFoundError(f"Image file '{name}' not found in '{IMG_DIR}'")
+    return pygame.image.load(path).convert_alpha()
 
 class main:
     def __init__(self):
@@ -14,7 +26,7 @@ class main:
         self.room_rect = pygame.Rect(-50, -200, 1000, 700)
 
         # 2) Last og skaler bildet (forutsetter at filen finnes)
-        self.room_img = pygame.image.load("bilder/kitchen.png").convert_alpha()
+        self.room_img = load_image("kitchen.png")
         self.room_img = pygame.transform.smoothscale(self.room_img, self.room_rect.size)
 
         self.livingroom = True
