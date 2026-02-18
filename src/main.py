@@ -23,7 +23,8 @@ class main:
         pygame.display.set_caption("DD")
         self.text = pygame.font.SysFont("Arial", 24)
          # 1) Definer målområdet
-        self.room_rect = pygame.Rect(-50, -200, 1000, 700)
+        self.room_rect = pygame.Rect(0,0,1000,700)
+        self.room_rect.center = self.screen.get_rect().center
 
         # 2) Last og skaler bildet (forutsetter at filen finnes)
         self.room_img = load_image("kitchen.png")
@@ -103,7 +104,11 @@ class main:
     # tegner skjermen
     def draw(self):
         self.screen.fill(config.PINK)  
-        self.screen.blit(self.room_img, self.room_rect.center)
+        self.screen.blit(self.room_img, self.room_rect)  # Tegn rommet på skjermen  
+
+        img_rect = self.room_img.get_rect(center=self.screen.get_rect().center)
+        self.screen.blit(self.room_img, img_rect)
+        
         self.sprites.draw(self.screen)
         pygame.display.update()
 
