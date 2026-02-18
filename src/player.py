@@ -50,8 +50,8 @@ class Player(pygame.sprite.Sprite):
             self.y = 830
 
     def update(self):
-        self.rules()
         self.move()
+        self.rules()
         self.rect.midbottom = (self.x, self.y)
         
     
