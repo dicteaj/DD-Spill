@@ -9,8 +9,8 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
 # Screen dimensions
-SCREEN_WIDTH = 1900
-SCREEN_HEIGHT = 1000
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
 
 # game logic settings
 SPEED = 5  # Player movement speed
