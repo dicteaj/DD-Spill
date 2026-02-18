@@ -103,12 +103,9 @@ class main:
 
     # tegner skjermen
     def draw(self):
-        self.screen.fill(config.PINK)  
-        self.screen.blit(self.room_img, self.room_rect)  # Tegn rommet på skjermen  
-
+        self.screen.fill(config.PINK)   
         img_rect = self.room_img.get_rect(center=self.screen.get_rect().center)
         self.screen.blit(self.room_img, img_rect)
-        
         self.sprites.draw(self.screen)
         pygame.display.update()
 
